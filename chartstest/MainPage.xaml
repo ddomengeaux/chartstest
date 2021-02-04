@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms"
@@ -17,9 +18,12 @@
             <Button BackgroundColor="LightGray" Text="Year" />
         </StackLayout>
 
-        <rangenavigator:SfDateTimeRangeNavigator HeightRequest="200" x:Name="rangeNavigator" ItemsSource="{Binding Data}" XBindingPath="XValue" YBindingPath="YValue">
+        <rangenavigator:SfDateTimeRangeNavigator HeightRequest="200" x:Name="rangeNavigator"
+                                                 ItemsSource="{Binding Data}" XBindingPath="XValue"
+                                                 YBindingPath="YValue">
             <rangenavigator:SfDateTimeRangeNavigator.Content>
-                <chart:SfChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindingContext="{x:Reference rangeNavigator}">
+                <chart:SfChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                               BindingContext="{x:Reference rangeNavigator}">
                     <chart:SfChart.PrimaryAxis>
                         <chart:DateTimeCategoryAxis />
                     </chart:SfChart.PrimaryAxis>
@@ -33,9 +37,10 @@
                     </chart:SfChart.ChartBehaviors>
 
                     <chart:SfChart.Series>
-                        <chart:FastLineSeries ItemsSource="{Binding ItemsSource}" XBindingPath="XValue" YBindingPath="YValue">
+                        <chart:FastLineSeries ItemsSource="{Binding ItemsSource}" XBindingPath="XValue"
+                                              YBindingPath="YValue">
                             <chart:FastLineSeries.DataMarker>
-                                <chart:ChartDataMarker/>
+                                <chart:ChartDataMarker />
                             </chart:FastLineSeries.DataMarker>
                         </chart:FastLineSeries>
                     </chart:SfChart.Series>
@@ -47,7 +52,8 @@
 
         <rangenavigator:SfDateTimeRangeNavigator HeightRequest="200" Minimum="2021,01,25" Maximum="2021,01,27">
             <rangenavigator:SfDateTimeRangeNavigator.Content>
-                <chart:SfChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindingContext="{x:Reference viewModel}" Series="{Binding Series}">
+                <chart:SfChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                               BindingContext="{x:Reference viewModel}" Series="{Binding Series}">
                     <chart:SfChart.PrimaryAxis>
                         <chart:DateTimeCategoryAxis />
                     </chart:SfChart.PrimaryAxis>

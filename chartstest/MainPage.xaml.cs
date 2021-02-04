@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Syncfusion.SfChart.XForms;
 using Xamarin.Forms;
 
@@ -20,40 +16,34 @@ namespace chartstest
 
     public class ViewModel
     {
-        public ObservableCollection<Model> Data { get; set; }
-        public ChartSeriesCollection Series
-        {
-            get => series;
-            set => series = value;
-        }
-
-        private DateTime Date = DateTime.Now.AddDays(-10);
-        private ChartSeriesCollection series;
+        private readonly DateTime Date = DateTime.Now.AddDays(-10);
 
         public ViewModel()
         {
             Data = new ObservableCollection<Model>();
             Series = new ChartSeriesCollection();
 
-            Random random = new Random();
+            var random = new Random();
 
-            for (int i = 0; i < 200; i++)
+            for (var i = 0; i < 200; i++)
             {
-                Data.Add(new Model() { XValue = Date, YValue = random.Next(1, 69) });
+                Data.Add(new Model {XValue = Date, YValue = random.Next(1, 69)});
                 Date = Date.AddMinutes(13);
             }
 
             foreach (var batch in Data.Batch(100))
-            {
-                Series.Add(new FastLineSeries()
+                Series.Add(new FastLineSeries
                 {
                     ItemsSource = batch,
                     XBindingPath = "XValue",
                     YBindingPath = "YValue",
                     Color = GetRandomColor()
                 });
-            }
         }
+
+        public ObservableCollection<Model> Data { get; set; }
+
+        public ChartSeriesCollection Series { get; set; }
 
         public static Color GetRandomColor()
         {
@@ -90,10 +80,8 @@ namespace chartstest
                     batch = new List<T>();
                 }
             }
-            if (batch.Count != 0)
-            {
-                yield return batch;
-            }
+
+            if (batch.Count != 0) yield return batch;
         }
     }
 }
