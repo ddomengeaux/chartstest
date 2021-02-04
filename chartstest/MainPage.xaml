@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:local="clr-namespace:chartstest"
+             x:Class="chartstest.MainPage">
+    <ContentPage.BindingContext>
+        <local:ViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Spacing="10" Margin="10, 100, 10, 100">
+        <StackLayout Orientation="Horizontal" Spacing="12" HorizontalOptions="Center">
+            <Button BackgroundColor="LightGray" Text="Day" />
+            <Button BackgroundColor="LightGray" Text="Week" />
+            <Button BackgroundColor="LightGray" Text="Month" />
+            <Button BackgroundColor="LightGray" Text="Year" />
+        </StackLayout>
+
+        <rangenavigator:SfDateTimeRangeNavigator HeightRequest="200" x:Name="rangeNavigator" ItemsSource="{Binding Data}" XBindingPath="XValue" YBindingPath="YValue">
+            <rangenavigator:SfDateTimeRangeNavigator.Content>
+                <chart:SfChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindingContext="{x:Reference rangeNavigator}">
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:DateTimeCategoryAxis />
+                    </chart:SfChart.PrimaryAxis>
+
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis />
+                    </chart:SfChart.SecondaryAxis>
+
+                    <chart:SfChart.ChartBehaviors>
+                        <chart:ChartZoomPanBehavior ZoomMode="X" />
+                    </chart:SfChart.ChartBehaviors>
+
+                    <chart:SfChart.Series>
+                        <chart:FastLineSeries ItemsSource="{Binding ItemsSource}" XBindingPath="XValue" YBindingPath="YValue">
+                            <chart:FastLineSeries.DataMarker>
+                                <chart:ChartDataMarker/>
+                            </chart:FastLineSeries.DataMarker>
+                        </chart:FastLineSeries>
+                    </chart:SfChart.Series>
+                </chart:SfChart>
+            </rangenavigator:SfDateTimeRangeNavigator.Content>
+        </rangenavigator:SfDateTimeRangeNavigator>
+    </StackLayout>
+
+</ContentPage>
