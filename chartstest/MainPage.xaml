@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:chartstest"
              x:Class="chartstest.MainPage">
     <ContentPage.BindingContext>
-        <local:ViewModel />
+        <local:ViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
 
     <StackLayout Spacing="10" Margin="10, 100, 10, 100">
@@ -39,6 +39,22 @@
                             </chart:FastLineSeries.DataMarker>
                         </chart:FastLineSeries>
                     </chart:SfChart.Series>
+                </chart:SfChart>
+            </rangenavigator:SfDateTimeRangeNavigator.Content>
+        </rangenavigator:SfDateTimeRangeNavigator>
+
+        <BoxView HeightRequest="100" />
+
+        <rangenavigator:SfDateTimeRangeNavigator HeightRequest="200" Minimum="2021,01,25" Maximum="2021,01,27">
+            <rangenavigator:SfDateTimeRangeNavigator.Content>
+                <chart:SfChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindingContext="{x:Reference viewModel}" Series="{Binding Series}">
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:DateTimeCategoryAxis />
+                    </chart:SfChart.PrimaryAxis>
+
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis />
+                    </chart:SfChart.SecondaryAxis>
                 </chart:SfChart>
             </rangenavigator:SfDateTimeRangeNavigator.Content>
         </rangenavigator:SfDateTimeRangeNavigator>
